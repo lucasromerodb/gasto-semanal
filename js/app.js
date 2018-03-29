@@ -42,6 +42,16 @@ class Interfaz {
       document.querySelector('.primario .alert').remove();
     }, 2000);
   }
+
+  agregarGastoListado(nombre, cantidad) {
+    const gastoListado = document.querySelector('#gastos ul');
+
+    const item = document.createElement('li');
+    item.className = 'list-group-item d-flex justify-content-between align-items-center';
+    item.innerHTML = `${nombre}: <span class="badge badge-primary badge-pill">$ ${cantidad}</span>`;
+
+    gastoListado.appendChild(item);
+  }
 }
 
 
@@ -67,7 +77,8 @@ form.addEventListener('submit', function(e) {
   if (nombreGasto === '' || cantidadGasto === '') {
     ui.imprimirMensaje('Llene los campos', 'error')
   } else {
-    console.log('agregar');
+    ui.imprimirMensaje('Agregado', 'correcto')
+    ui.agregarGastoListado(nombreGasto, cantidadGasto);
   }
 
 })
